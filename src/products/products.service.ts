@@ -80,7 +80,7 @@ export class ProductsService {
   }
 
   remove(id: string) {
-    return `This action removes a #${id} product`;
+    return this.productModel.remove({ _id: id });
   }
 
   async relatedproducts(id: string) {
@@ -110,4 +110,3 @@ export class ProductsService {
     ]);
   }
 }
-

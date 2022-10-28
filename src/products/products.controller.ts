@@ -147,4 +147,3 @@ export class ProductsController {
     return this.productsService.relatedproducts(id);
   }
 }
-
