@@ -110,11 +110,13 @@ export class ProductsController {
     @Body() updateProductDto: UpdateProductDto,
     @UploadedFiles() files: Array<Express.Multer.File>,
   ) {
-    const filesArr = updateProductDto.images;
+    updateProductDto.images =
+      updateProductDto.images === undefined ? [] : updateProductDto.images;
+
     console.log(updateProductDto);
 
     files.forEach((file) => {
-      filesArr.push(file.filename);
+      updateProductDto.images.push(file.filename);
     });
     return this.productsService.update(id, updateProductDto);
   }
