@@ -54,6 +54,8 @@ export class ProductsController {
     @Body() createProductDto: CreateProductDto,
   ) {
     const filesArr = [];
+    if (files.length >= 1) createProductDto.illustration = files[0].filename;
+
     files.forEach((file) => {
       filesArr.push(file.filename);
     });
@@ -109,6 +111,8 @@ export class ProductsController {
     @UploadedFiles() files: Array<Express.Multer.File>,
   ) {
     const filesArr = updateProductDto.images;
+    console.log(updateProductDto);
+
     files.forEach((file) => {
       filesArr.push(file.filename);
     });

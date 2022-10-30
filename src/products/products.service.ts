@@ -62,7 +62,7 @@ export class ProductsService {
     if (q) filter['name'] = { $regex: `${q}` };
     const findQuery = this.productModel
       .find(filter)
-      .sort({ _id: 1 })
+      .sort({ _id: -1 })
       .skip((documentsToPage - 1) * limitOfDocuments);
 
     if (limitOfDocuments) {
