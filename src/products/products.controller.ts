@@ -113,7 +113,9 @@ export class ProductsController {
     updateProductDto.images =
       updateProductDto.images === undefined ? [] : updateProductDto.images;
 
-    console.log(updateProductDto);
+    if (updateProductDto.illustration === undefined) {
+      updateProductDto.illustration = files.shift().filename;
+    }
 
     files.forEach((file) => {
       updateProductDto.images.push(file.filename);

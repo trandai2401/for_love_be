@@ -17,7 +17,17 @@ export class CategoriesService {
   }
 
   findAll() {
-    return this.categoryModel.find().exec();
+    return this.categoryModel.aggregate([
+      {
+        $lookup: {
+          from: 'manufacturers',
+          localField: 'manufacturers',
+          foreignField: 'code',
+          as: 'manu_items',
+        },
+      },
+    ]);
+    // return this.categoryModel.find().exec();
   }
 
   findOne(id: number) {
@@ -32,4 +42,3 @@ export class CategoriesService {
     return `This action removes a #${id} category`;
   }
 }
-
